@@ -10,7 +10,7 @@ namespace ConsoleListSeries.Entities
         private string Title { get; set; }
         private string Description { get; set; }
         private int Year { get; set; }
-
+        private bool  Deleted { get; set }
         public Serie(int id, Genre genre,string title, string description, int year)
         {
             this.Id = id;
@@ -18,6 +18,7 @@ namespace ConsoleListSeries.Entities
             this.Title = title;
             this.Description = description;
             this.Year = year;
+            this.Deleted = false;
         }
 
         public override string ToString()
@@ -38,6 +39,11 @@ namespace ConsoleListSeries.Entities
         public int GetId()
         {
             return this.Id;
+        }
+
+        public void Delete()
+        {
+            this.Deleted = true;
         }
 
     }

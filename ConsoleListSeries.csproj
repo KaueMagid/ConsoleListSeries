@@ -6,8 +6,4 @@
     <StartupObject>ConsoleListSeries.Program</StartupObject>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>
