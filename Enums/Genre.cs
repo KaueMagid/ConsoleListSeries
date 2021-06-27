@@ -1,6 +1,6 @@
 ﻿namespace ConsoleListSeries.Enums
 {
-    public enum Genre
+    public enum Genre : int
     {
         Action = 1,
         Adventure = 2,
@@ -14,6 +14,9 @@
         Romance = 10,
         RomanticComedy = 11,
         Documentary = 12,
-        West = 13
+        West = 13,
+
+        Min = Action,
+        Max = West
     }
 }
