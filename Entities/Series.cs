@@ -52,5 +52,9 @@ namespace ConsoleListSeries.Entities
             this.Deleted = true;
         }
 
+        public bool GetDeleted()
+        {
+            return this.Deleted;
+        }
     }
 }

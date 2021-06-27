@@ -98,7 +98,7 @@ namespace ConsoleListSeries
             Console.ResetColor();
             foreach (var serie in repository.List())
             {
-                Console.WriteLine("{0:D2} - {1}",serie.Id, serie.GetTitle());
+                Console.WriteLine("{0:D2} - {1} - {2}",serie.Id, serie.GetTitle(),(serie.GetDeleted() ? "Deleted" : "Active"));
             }
 
             Console.WriteLine("press enter to return menu");
@@ -168,7 +168,7 @@ namespace ConsoleListSeries
             Console.ResetColor();
             foreach (var serie in repository.List())
             {
-                Console.WriteLine("{0:D2} - {1}", serie.Id, serie.GetTitle());
+                Console.WriteLine("{0:D2} - {1} - {2}",serie.Id, serie.GetTitle(),(serie.GetDeleted() ? "Deleted" : "Active"));
             }
             Console.WriteLine();
             if (!int.TryParse(Console.ReadLine(),out int id)||id<0||id>repository.NextId()-1)
@@ -240,7 +240,7 @@ namespace ConsoleListSeries
             Console.ResetColor();
             foreach (var serie in repository.List())
             {
-                Console.WriteLine("{0:D2} - {1}", serie.Id, serie.GetTitle());
+                Console.WriteLine("{0:D2} - {1} - {2}",serie.Id, serie.GetTitle(),(serie.GetDeleted() ? "Deleted" : "Active"));
             }
             Console.WriteLine("Enter the Id to delete or press enter to return:");
 
@@ -276,7 +276,7 @@ namespace ConsoleListSeries
             Console.ResetColor();
             foreach (var serie in repository.List())
             {
-                Console.WriteLine("{0:D2} - {1}", serie.Id, serie.GetTitle());
+                Console.WriteLine("{0:D2} - {1} - {2}",serie.Id, serie.GetTitle(),(serie.GetDeleted() ? "Deleted" : "Active"));
             }
 
             if (!int.TryParse(Console.ReadLine(),out int id) || id < 0 || id >= repository.NextId())
