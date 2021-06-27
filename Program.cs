@@ -28,14 +28,16 @@ namespace ConsoleListSeries
 
                         case "3":
                             //Updade
+                            UpdateSarie();
                             break;
 
                         case "4":
                             //Delete
+                            DeleteSeries();
                             break;
 
                         case "5":
-                            //Show
+                            ShowSeries();
                             break;
 
                         default:
@@ -216,7 +218,76 @@ namespace ConsoleListSeries
                 description = series.GetDescription();
             }
             repository.UpdateEntity(id, new Series(id, (Genre)genre, title, description, year));
+            Console.WriteLine("Series updated successfully");
+            Console.WriteLine("to return press enter");
+            Console.ReadLine();
+        }
 
+        private static void DeleteSeries()
+        {
+            Console.Clear();
+            if (repository.NextId() == 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("There are no series to show!");
+                Console.WriteLine("press enter to return menu");
+                Console.ReadLine();
+                return;
+            }
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("List Series");
+            Console.WriteLine("ID -   TITLE ");
+            Console.ResetColor();
+            foreach (var serie in repository.List())
+            {
+                Console.WriteLine("{0:D2} - {1}", serie.Id, serie.GetTitle());
+            }
+            Console.WriteLine("Enter the Id to delete or press enter to return:");
+
+            string aws = Console.ReadLine();
+            if (String.IsNullOrEmpty(aws))
+            {
+                return;
+            }
+            if (!int.TryParse(aws,out int id)||id<0||id>=repository.NextId())
+            {
+                throw new ArgumentOutOfRangeException("Id Error", "Please enter a valid id");
+            }
+            repository.Remove(id);
+            Console.WriteLine("Series deleted successfully");
+            Console.WriteLine("press enter to return");
+            Console.ReadLine();
+        }
+
+        private static void ShowSeries()
+        {
+            Console.Clear();
+            if (repository.NextId() == 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("There are no series to show!");
+                Console.WriteLine("press enter to return menu");
+                Console.ReadLine();
+                return;
+            }
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Please enter id to show more info from Series");
+            Console.WriteLine("ID -   TITLE ");
+            Console.ResetColor();
+            foreach (var serie in repository.List())
+            {
+                Console.WriteLine("{0:D2} - {1}", serie.Id, serie.GetTitle());
+            }
+
+            if (!int.TryParse(Console.ReadLine(),out int id) || id < 0 || id >= repository.NextId())
+            {
+                throw new ArgumentOutOfRangeException("Error Id", "Please enter a valid id");
+            }
+            Console.Clear();
+            repository.SearchById(id).ToString();
+            Console.WriteLine();
+            Console.WriteLine("Press enter to retur menu");
+            Console.ReadLine();
         }
     }
 }

@@ -27,7 +27,8 @@ namespace ConsoleListSeries.Entities
             aws += "Title: " + this.Title + Environment.NewLine;
             aws += "Description: " + this.Description + Environment.NewLine;
             aws += "Year: " + this.Year + Environment.NewLine;
-            
+            aws += "Deleted: " + this.Deleted + Environment.NewLine;
+
             return aws;
         }
         
